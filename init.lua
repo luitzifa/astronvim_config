@@ -116,6 +116,7 @@ local config = {
   lsp = {
     -- enable servers that you already have installed without mason
     servers = {
+      "puppet"
       -- "pyright"
     },
     -- easily add or disable built in mappings added during LSP attaching
@@ -153,6 +154,16 @@ local config = {
       --     client.resolved_capabilities.document_formatting = false
       --   end
       -- }
+      ["puppet"] = {
+        root_dir = function(fname)
+          local root_files = {
+            "manifests",
+            ".puppet-lint.rc",
+            "hiera.yaml",
+          }
+        return require("lspconfig").util.find_git_ancestor(fname) or require("lspconfig").util.root_pattern(unpack(root_files))(fname) or require("lspconfig").util.path.dirname(fname)
+      end,
+      }
     },
   },
 
@@ -182,6 +193,7 @@ local config = {
   -- Configure plugins
   plugins = {
     init = {
+      { "rodjek/vim-puppet" },
       -- You can disable default plugins as follows:
       -- ["goolord/alpha-nvim"] = { disable = true },
 
