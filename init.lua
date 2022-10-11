@@ -155,6 +155,11 @@ local config = {
       --   end
       -- }
       ["puppet"] = {
+        cmd = {
+          "puppet-languageserver",
+          "--stdio",
+          "-local-workspace", "/home/dakr/GIT/solute/infrastructure/puppetcfg"
+        },
         root_dir = function(fname)
           local root_files = {
             "manifests",
