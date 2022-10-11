@@ -116,7 +116,7 @@ local config = {
   lsp = {
     -- enable servers that you already have installed without mason
     servers = {
-      "puppet"
+      "puppet",
       -- "pyright"
     },
     -- easily add or disable built in mappings added during LSP attaching
@@ -158,7 +158,8 @@ local config = {
         cmd = {
           "puppet-languageserver",
           "--stdio",
-          "-local-workspace", "/home/dakr/GIT/solute/infrastructure/puppetcfg"
+          "--local-workspace",
+          "/home/dakr/GIT/solute/infrastructure/puppetcfg",
         },
         root_dir = function(fname)
           local root_files = {
@@ -166,9 +167,11 @@ local config = {
             ".puppet-lint.rc",
             "hiera.yaml",
           }
-        return require("lspconfig").util.find_git_ancestor(fname) or require("lspconfig").util.root_pattern(unpack(root_files))(fname) or require("lspconfig").util.path.dirname(fname)
-      end,
-      }
+          return require("lspconfig").util.find_git_ancestor(fname)
+            or require("lspconfig").util.root_pattern(unpack(root_files))(fname)
+            or require("lspconfig").util.path.dirname(fname)
+        end,
+      },
     },
   },
 
