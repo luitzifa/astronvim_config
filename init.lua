@@ -45,6 +45,7 @@ local config = {
   options = {
     opt = {
       relativenumber = true, -- sets vim.opt.relativenumber
+      title = true,
     },
     g = {
       mapleader = " ", -- sets vim.g.mapleader
@@ -201,7 +202,6 @@ local config = {
   -- Configure plugins
   plugins = {
     init = {
-      { "rodjek/vim-puppet" },
       -- You can disable default plugins as follows:
       -- ["goolord/alpha-nvim"] = { disable = true },
 
@@ -227,7 +227,7 @@ local config = {
     -- All other entries override the require("<key>").setup({...}) call for default plugins
     ["null-ls"] = function(config) -- overrides `require("null-ls").setup(config)`
       -- config variable is the default configuration table for the setup functino call
-      -- local null_ls = require "null-ls"
+      local null_ls = require "null-ls"
 
       -- Check supported formatters and linters
       -- https://github.com/jose-elias-alvarez/null-ls.nvim/tree/main/lua/null-ls/builtins/formatting
@@ -236,6 +236,8 @@ local config = {
         -- Set a formatter
         -- null_ls.builtins.formatting.stylua,
         -- null_ls.builtins.formatting.prettier,
+        null_ls.builtins.diagnostics.puppet_lint,
+        null_ls.builtins.formatting.puppet_lint,
       }
       -- set up null-ls's on_attach function
       -- NOTE: You can uncomment this on attach function to enable format on save
