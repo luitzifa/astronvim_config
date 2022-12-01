@@ -46,6 +46,7 @@ local config = {
     opt = {
       relativenumber = true, -- sets vim.opt.relativenumber
       title = true,
+      autoindent = true,
     },
     g = {
       mapleader = " ", -- sets vim.g.mapleader
@@ -169,8 +170,8 @@ local config = {
             "hiera.yaml",
           }
           return require("lspconfig").util.find_git_ancestor(fname)
-            or require("lspconfig").util.root_pattern(unpack(root_files))(fname)
-            or require("lspconfig").util.path.dirname(fname)
+              or require("lspconfig").util.root_pattern(unpack(root_files))(fname)
+              or require("lspconfig").util.path.dirname(fname)
         end,
       },
     },
