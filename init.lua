@@ -243,6 +243,8 @@ local config = {
         -- null_ls.builtins.formatting.prettier,
         null_ls.builtins.diagnostics.puppet_lint,
         null_ls.builtins.formatting.puppet_lint,
+        null_ls.builtins.diagnostics.shellcheck,
+        null_ls.builtins.formatting.black,
         null_ls.builtins.diagnostics.pylint.with({
           prefer_local = true,
         }),
