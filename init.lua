@@ -9,7 +9,7 @@ local config = {
   -- Configure AstroNvim updates
   updater = {
     remote = "origin", -- remote to use
-    channel = "nightly", -- "stable" or "nightly"
+    channel = "stable", -- "stable" or "nightly"
     version = "latest", -- "latest", tag name, or regex search like "v1.*" to only do updates before v2 (STABLE ONLY)
     branch = "main", -- branch name (NIGHTLY ONLY)
     commit = nil, -- commit hash (NIGHTLY ONLY)
@@ -47,6 +47,10 @@ local config = {
       relativenumber = true, -- sets vim.opt.relativenumber
       title = true,
       autoindent = true,
+      tabstop = 4,
+      shiftwidth = 4,
+      softtabstop = 4,
+      expandtab = true,
     },
     g = {
       mapleader = " ", -- sets vim.g.mapleader
@@ -239,6 +243,9 @@ local config = {
         -- null_ls.builtins.formatting.prettier,
         null_ls.builtins.diagnostics.puppet_lint,
         null_ls.builtins.formatting.puppet_lint,
+        null_ls.builtins.diagnostics.pylint.with({
+          prefer_local = true,
+        }),
       }
       -- set up null-ls's on_attach function
       -- NOTE: You can uncomment this on attach function to enable format on save
